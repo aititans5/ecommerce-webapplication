@@ -1,0 +1,24 @@
+<app-header></app-header>
+<div class="container mt-5">
+  <h1 class="mb-4">Inventory List</h1>
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Item Name</th>
+        <th scope="col">Category</th>
+        <th scope="col">Image</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items">
+        <td>{{ item.itemname }}</td>
+        <td>{{ getItemType(item.categoryid) }}</td>
+        <td>
+          <img [src]="getImage(item)" alt="Item Image" crossorigin="anonymous" class="img-thumbnail" style="max-width: 100px;">
+        </td>
+        <td>{{ item.price }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

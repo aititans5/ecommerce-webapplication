@@ -2,6 +2,10 @@
 <div class="container">
   <div class="row justify-content-center align-items-center" style="height: 100vh;">
     <div class="col-lg-4 col-md-6">
+      <div class="closable-div" id="myDiv" *ngIf="showresponse">
+        <span class="close-icon" (click)="closeDiv()">&times;</span>
+        <p style="color:red;font-weight: bold;">{{responsemsg}}</p>
+      </div>
       <div class="card">
         <div class="card-body">
           <h2 class="card-title text-center">User Registration</h2>

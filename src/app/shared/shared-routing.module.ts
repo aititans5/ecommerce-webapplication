@@ -6,7 +6,7 @@ import { UploadImageComponent } from './pages/upload-image/upload-image.componen
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'shared/upload-product',
     redirectTo: '/shared/upload-product',
     pathMatch: 'full'
   },

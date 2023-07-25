@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { login_user } from 'src/app/core/models/login_user';
+import { LoginService } from 'src/app/core/services/login.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -16,7 +20,9 @@ export class LoginComponent implements OnInit {
 
   isSubmitted = false;
 
-  constructor() {
+  user: login_user;
+
+  constructor(private loginservice : LoginService, private route : Router) {
   }
 
   validationMessage = {
@@ -67,7 +73,19 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.loginForm.valid) {
       // Perform login logic here
-      console.log(this.loginForm.value);
+
+      this.user = new login_user(this.loginForm.get('email')?.value, this.loginForm.get('password')?.value)
+
+      this.loginservice.loginUser(this.user).subscribe((response)=>{
+            if(response.user)
+            {
+               // set jwt token in session storage.
+               var token = response.user.access;
+               sessionStorage.setItem('jwt_token', token);
+               console.log("user login successfully");
+               this.route.navigate(['/ecommerce/inventory']);
+            }
+      });
       // Reset the form
       this.loginForm.reset();
         }
@@ -82,7 +100,4 @@ export class LoginComponent implements OnInit {
       // this.loginForm.unsubscribe();
     }
   }
-
-
-
 }

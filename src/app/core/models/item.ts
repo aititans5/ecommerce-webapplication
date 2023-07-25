@@ -1,4 +1,4 @@
-export interface item {
+export class item {
   itemid: number
   categoryid: number
   qty: number

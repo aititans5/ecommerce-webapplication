@@ -13,24 +13,17 @@ const routes: Routes = [
     loadChildren: () =>
       import('./shared/shared.module').then((m) => m.SharedModule),
   },
-  // {
-  //   path: '',
-  //   component: ContentLayoutComponent,
-  //   canActivate: [NoAuthGuard], // Should be replaced with actual auth guard
-  //   children: CONTENT_ROUTES
-  // },
-  // {
-  //   path: 'auth',
-  //   component: AuthLayoutComponent,
-  //   loadChildren: './modules/auth/auth.module#AuthModule'
-  // },
-  // Fallback when no prior routes is matched
   {
-    path: '**',
+    path: 'ecommerce',
     loadChildren: () =>
-      import('./modules/auth/auth.module').then((m) => m.AuthModule),
-    pathMatch: 'full',
+      import('./modules/inventory/inventory.module').then((m) => m.InventoryModule),
   },
+  // {
+  //   path: '**',
+  //   loadChildren: () =>
+  //     import('./modules/auth/auth.module').then((m) => m.AuthModule),
+  //   pathMatch: 'full',
+  // },
 ];
 
 @NgModule({
